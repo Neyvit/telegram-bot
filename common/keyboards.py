@@ -1,41 +1,52 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from common.constants import CallbackData, URLs
 
-portfolio_kbd = InlineKeyboardMarkup(inline_keyboard=[
-    [
-        InlineKeyboardButton(text="Открытки/пригласительные", callback_data="cards")
-    ],
-    [
-        InlineKeyboardButton(text="Инфографика", callback_data="infographics"),
-        InlineKeyboardButton(text="Визитки", callback_data="business_cards"),
-        InlineKeyboardButton(text="Логотипы", callback_data="logos"),
-    ],
-    [
-        InlineKeyboardButton(text="Прайс-листы", callback_data="price_lists"),
-        InlineKeyboardButton(text="Листовки", callback_data="leaflets"),
-        InlineKeyboardButton(text="Сертификаты", callback_data="certificates"),
+class Keyboards:
+    """Класс для хранения всех клавиатур бота"""
+    
+    @classmethod
+    def get_portfolio_keyboard(cls) -> InlineKeyboardMarkup:
+        """Клавиатура для выбора категории портфолио"""
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text="Открытки/пригласительные", callback_data=CallbackData.CARDS)
+            ],
+            [
+                InlineKeyboardButton(text="Инфографика", callback_data=CallbackData.INFOGRAPHICS),
+                InlineKeyboardButton(text="Визитки", callback_data=CallbackData.BUSINESS_CARDS),
+                InlineKeyboardButton(text="Логотипы", callback_data=CallbackData.LOGOS),
+            ],
+            [
+                InlineKeyboardButton(text="Прайс-листы", callback_data=CallbackData.PRICE_LISTS),
+                InlineKeyboardButton(text="Листовки", callback_data=CallbackData.LEAFLETS),
+                InlineKeyboardButton(text="Сертификаты", callback_data=CallbackData.CERTIFICATES),
+            ],
+        ])
 
-    ],
-], )
+    @classmethod
+    def get_start_portfolio_keyboard(cls) -> InlineKeyboardMarkup:
+        """Клавиатура для перехода к портфолио"""
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="Портфолио", callback_data=CallbackData.PORTFOLIO)]
+        ])
 
-start_portfolio_kbd = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Портфолио",
-                          callback_data="portfolio")]
-], )
+    @classmethod
+    def get_portfolio_and_orders_keyboard(cls) -> InlineKeyboardMarkup:
+        """Клавиатура для просмотра портфолио и связи с дизайнером"""
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text="Посмотреть портфолио", url=URLs.PORTFOLIO),
+            ],
+            [
+                InlineKeyboardButton(text="Написать дизайнеру / Заказать", url=URLs.DESIGNER),
+            ],
+        ], resize_keyboard=True)
 
-portfolio_and_orders_kbd = InlineKeyboardMarkup(inline_keyboard=[
-    [
-        InlineKeyboardButton(text="Посмотреть портфолио",
-                             url="https://www.behance.net/gallery/213576091/Portfolio"),
-    ],
-    [
-        InlineKeyboardButton(text="Написать дизайнеру / Заказать",
-                             url="https://t.me/Angelika_zhu"),
-    ],
-], resize_keyboard=True)
-
-write_to_me_kbd = InlineKeyboardMarkup(inline_keyboard=[
-    [
-        InlineKeyboardButton(text="Написать дизайнеру / Заказать",
-                             url="https://t.me/Angelika_zhu"),
-    ],
-], resize_keyboard=True)
+    @classmethod
+    def get_write_to_me_keyboard(cls) -> InlineKeyboardMarkup:
+        """Клавиатура для связи с дизайнером"""
+        return InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text="Написать дизайнеру / Заказать", url=URLs.DESIGNER),
+            ],
+        ], resize_keyboard=True)
