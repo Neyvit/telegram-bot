@@ -4,12 +4,14 @@ from common.keyboards import Keyboards
 
 router = Router()
 
+
 @router.callback_query(F.data == 'portfolio')
 async def look_at_portfolio(callback: CallbackQuery):
     await callback.answer("Просмотреть категории")
     await callback.message.answer(
-        "Для чего разработать дизайн?", 
+        "Для чего разработать дизайн?",
         reply_markup=Keyboards.get_portfolio_keyboard())
+
 
 @router.callback_query(F.data == 'infographics')
 async def choose_infographics(callback: CallbackQuery):
@@ -24,6 +26,7 @@ async def choose_infographics(callback: CallbackQuery):
         """,
         reply_markup=Keyboards.get_portfolio_and_orders_keyboard())
 
+
 @router.callback_query(F.data == 'logos')
 async def choose_logos(callback: CallbackQuery):
     await callback.answer("Загрузка")
@@ -36,6 +39,7 @@ async def choose_logos(callback: CallbackQuery):
         \n Сроки: от 3 дней
         """,
         reply_markup=Keyboards.get_portfolio_and_orders_keyboard())
+
 
 @router.callback_query(F.data == 'certificates')
 async def choose_certificates(callback: CallbackQuery):
@@ -50,11 +54,12 @@ async def choose_certificates(callback: CallbackQuery):
         """,
         reply_markup=Keyboards.get_portfolio_and_orders_keyboard())
 
+
 @router.callback_query(F.data == 'cards')
 async def choose_cards(callback: CallbackQuery):
     await callback.answer("Загрузка")
     await callback.message.answer(
-        """Открытки и приглашения — яркий
+        """Открытки и приглашения. Вашему вниманию предлагаю:
         \n ✅ Уникальный и креативный дизайн
         \n ✅ Оформление для любых мероприятий
         \n ✅ Подготовка файлов
@@ -62,6 +67,7 @@ async def choose_cards(callback: CallbackQuery):
         \n Сроки: от 2 дней
         """,
         reply_markup=Keyboards.get_portfolio_and_orders_keyboard())
+
 
 @router.callback_query(F.data == 'leaflets')
 async def choose_leaflets(callback: CallbackQuery):
@@ -76,6 +82,7 @@ async def choose_leaflets(callback: CallbackQuery):
         """,
         reply_markup=Keyboards.get_portfolio_and_orders_keyboard())
 
+
 @router.callback_query(F.data == 'business_cards')
 async def choose_business_cards(callback: CallbackQuery):
     await callback.answer("Загрузка")
@@ -88,6 +95,7 @@ async def choose_business_cards(callback: CallbackQuery):
         \n Сроки: от 3 дней
         """,
         reply_markup=Keyboards.get_portfolio_and_orders_keyboard())
+
 
 @router.callback_query(F.data == 'price_lists')
 async def choose_price_lists(callback: CallbackQuery):
